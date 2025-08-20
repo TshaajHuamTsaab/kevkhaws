@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>智慧三部曲完整版</title>
+<style>
+body {
+  margin:0;
+  font-family:"Microsoft YaHei",sans-serif;
+  background:black;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+}
+h1 { 
+  margin-bottom:20px; 
+  font-size:3em; 
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 4s linear infinite;
+}
+@keyframes rainbow {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+.line {
+  margin: 15px 0;
+  text-align: center;
+}
+.highlight {
+  color: gold;
+  font-weight: bold;
+  background: rgba(255, 215, 0, 0.2);
+  display: inline-block;
+  padding: 2px 5px;
+}
+.controls {
+  position:absolute;
+  bottom:20px;
+}
+button {
+  margin:10px;
+  padding:15px 30px;
+  border:none;
+  border-radius:10px;
+  font-size:1.2em;
+  cursor:pointer;
+  font-weight:bold;
+}
+#playBtn { background: royalblue; color:white; }
+#stopBtn { background: crimson; color:white; }
+.navBtn { background: seagreen; color:white; }
+#switchBtn { background: orange; color:black; }
+#successBtn {
+  display:none;
+  position:absolute;
+  top:20px;
+  font-size:1.5em;
+  background: gold;
+  color:black;
+  font-weight:bold;
+  padding:10px 20px;
+  border-radius:8px;
+}
+#fontControls {
+  position:absolute;
+  bottom:20px;
+  left:20px;
+}
+#fontControls button {
+  width:50px;
+  height:50px;
+  font-size:1.5em;
+  padding:0;
+  margin:5px;
+}
+#explainBtn {
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:1.3em;
+  padding:10px 20px;
+  font-weight:bold;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  background-size: 400% 100%;
+  color:white;
+  animation: rainbow 4s linear infinite;
+}
+#explanationBox {
+  display:none;
+  position:absolute;
+  top:80px;
+  right:20px;
+  width:400px;
+  max-height:70vh;
+  overflow-y:auto;
+  background: rgba(0,0,0,0.85);
+  color:white;
+  border-radius:10px;
+  padding:20px;
+  font-size:1.1em;
+  line-height:1.6em;
+}
+.greenText { color: #00FF00; font-weight: bold; }
+.redText { color: #FF3333; font-weight: bold; }
+.blueText { color: #3399FF; font-weight: bold; font-size:1.3em; }
+</style>
+</head>
+<body>
+<canvas id="space"></canvas>
+<h1 id="title">过去</h1>
+<div id="text"></div>
+
+<div class="controls">
+  <button class="navBtn" onclick="prevPage()">上一页</button>
+  <button id="playBtn" onclick="playText()">播放朗读</button>
+  <button id="stopBtn" onclick="stopText()">停止朗读</button>
+  <button class="navBtn" onclick="nextPage()">下一页</button>
+  <button id="switchBtn" class="navBtn" onclick="switchOrder()">切换顺序</button>
+</div>
+
+<div id="fontControls">
+  <button onclick="changeFontSize(2)">+</button>
+  <button onclick="changeFontSize(-2)">-</button>
+</div>
+
+<button id="successBtn">祝你成功🏆</button>
+<button id="explainBtn" onclick="toggleExplanation()">解释经文</button>
+
+<div id="explanationBox">
+  <p><span class="blueText">过去：</span><span class="redText">反思经历过去的事情该按照使用的原则</span></p>
+  <p><span class="greenText">“初心是否真诚，不为虚荣左右。”</span></p>
+  <p><span class="greenText">“志行是否一致，行动配得志。”</span></p>
+  <p><span class="greenText">“得失能否总结，错误化为力。”</span></p>
+  <p><span class="greenText">“志向是否兼顾，不损他人利。”</span></p>
+  <p><span class="greenText">“志愿是否适时，环境能相合。”</span></p>
+  <p><span class="blueText">现在：</span><span class="redText">现实，自己还在过着还在掌握着的事情该做的原则</span></p>
+  <p><span class="greenText">“明确方向专注，不随潮流摇摆。”</span></p>
+  <p><span class="greenText">“立足当下行动，不拖延空幻想。”</span></p>
+  <p><span class="greenText">“修养品德心境，志不离于德。”</span></p>
+  <p><span class="greenText">“广结善缘助人，行路有人扶。”</span></p>
+  <p><span class="greenText">“不惧困难坚持，积累终有成。”</span></p>
+  <p><span class="blueText">未来：</span><span class="redText">思考规划好自己的人生未来以后无懊恼！</span></p>
+  <p><span class="greenText">“志愿长远规划，不困于一时。”</span></p>
+  <p><span class="greenText">“传承精神价值，不只为己。”</span></p>
+  <p><span class="greenText">“积累智慧经验，惠泽后代。”</span></p>
+  <p><span class="greenText">“心怀宽广胸襟，容纳不同。”</span></p>
+  <p><span class="greenText">“保持终身学习，不停于成。”</span></p>
+</div>
+
+<script>
+// ---------- 文本数据 ----------
+let pages=[
+  // 过去/现在/未来
+  { title:"过去", lines:["初心是否真诚，不为虚荣左右。","志行是否一致，行动配得志。","得失能否总结，错误化为力。","志向是否兼顾，不损他人利。","志愿是否适时，环境能相合。"] },
+  { title:"现在", lines:["明确方向专注，不随潮流摇摆。","立足当下行动，不拖延空幻想。","修养品德心境，志不离于德。","广结善缘助人，行路有人扶。","不惧困难坚持，积累终有成。"] },
+  { title:"未来", lines:["志愿长远规划，不困于一时。","传承精神价值，不只为己。","积累智慧经验，惠泽后代。","心怀宽广胸襟，容纳不同。","保持终身学习，不停于成。"] },
+
+  // 现实版50句 10页
+  { title:"社会处事", lines:["在社会混，最值钱的不是钱，而是信用。","给人留台阶，就是给自己留后路。","圈子再大，不真诚也白搭。","碰到麻烦，先沉住气，不要乱说话。","人脉不是认识多少人，而是谁愿意帮你。"] },
+  { title:"为人处事", lines:["会做人，比会做事更重要。","千万别贪小便宜，最后吃大亏的还是自己。","人前说一句，背后别添一句。","恩情要记心里，矛盾要放身后。","小事情能看出一个人的真面目。"] },
+  { title:"夫妻相处", lines:["婚姻不是比谁厉害，而是一起过日子。","吵架别过夜，冷战最伤感情。","站在对方角度想想，有些火气就下去了。","夸一句，比骂十句更管用。","苦日子能一起熬，甜日子才稳得住。"] },
+  { title:"家庭和睦", lines:["家里不是讲输赢的地方，是讲温暖的地方。","一家人多说一句谢谢，气氛就不一样。","家务不是谁的事，谁有空谁做。","进家门，先放下情绪再开口。","家里和气，走出去才有底气。"] },
+  { title:"教育孩子", lines:["孩子学你怎么做，不听你怎么说。","先教做人，再教读书。","太顺的孩子，长大容易吃大亏。","要孩子懂付出，而不是只会要东西。","鼓励一句，顶得过打击十句。"] },
+  { title:"遵守家规", lines:["家没规矩，再有钱也留不住。","规矩不是束缚，是底线。","长辈立规矩，晚辈守规矩，家才安稳。","规矩讲清楚，孩子才知道方向。","家里守规矩，出去才不会丢人。"] },
+  { title:"孝顺父母", lines:["父母在，家就在。","孝顺不是以后，是现在。","常回家吃饭，比转账更暖心。","父母的唠叨，是最便宜的关心。","陪伴才是真孝顺，不是光给钱。"] },
+  { title:"邻里关系", lines:["远亲不如近邻，抬头不见低头见。","打个招呼，能化解一半尴尬。","别贪邻居小便宜，迟早坏了关系。","借点小忙，将来自己也能少麻烦。","不搬弄是非，是最好的邻里修养。"] },
+  { title:"朋友交往", lines:["真朋友，不是喝酒时陪你，而是有事时帮你。","患难见真心，顺境看热闹。","朋友之间，守信用最重要。","拿别人短处开玩笑，迟早散伙。","跟靠谱的人在一起，自己也会变靠谱。"] },
+  { title:"自我修养", lines:["心态放平，日子才顺。","说话要有分寸，别口无遮拦。","能忍一时之气，就能少十年烦恼。","依赖谁，都不如靠自己。","每天反省一点，日子就进步一点。"] },
+
+  // 顶层人物10大束缚语言 10页
+  { title:"只要努力，就能成功", lines:["实质：把“社会不平等”转移成“个人不够努力”，掩盖阶层壁垒。","真相：资源、背景、人脉远比单纯努力更决定成败。","跨越：努力必须和选择赛道、资本资源结合，否则只是原地跑。"] },
+  { title:"要忠诚，不要计较", lines:["实质：用“忠诚”掩盖不公，要求下层无条件付出。","真相：忠诚通常是单向的，少数人享受成果，多数人消耗生命。","跨越：在任何关系中，学会保护底线，不做被榨干的螺丝钉。"] },
+  { title:"为了大家好，你要牺牲", lines:["实质：用“集体”做幌子，迫使个人牺牲，最终受益的却是少数人。","真相：所谓“大家”，往往是“上面的人”。","跨越：牺牲前先问清：利益分配是否透明？牺牲是否值得？"] },
+  { title:"听话，机会就给你", lines:["实质：制造“机会稀缺”的幻觉，让人用顺从换未来。","真相：机会不是恩赐，而是交易。","跨越：靠实力主动创造机会，不做等待被选中的人。"] },
+  { title:"钱不是最重要的", lines:["实质：劝说底层满足现状，好压低报酬。","真相：说这句话的人，早已坐拥财富。","跨越：金钱是生存的基础，要敢于争取属于自己的价值。"] },
+  { title:"忍一忍就过去了", lines:["实质：培养“顺民”，让人习惯屈服，不敢反抗。","真相：忍一次，就会有第二次、第三次。","跨越：该忍就忍，但关键时刻要敢于拒绝和对抗。"] },
+  { title:"你们要团结", lines:["实质：用团结的名义，让底层互相约束，却只为上层利益服务。","真相：所谓团结，常常是“让你们听话”。","跨越：真正的团结是基于共同利益，而不是被动服从。"] },
+  { title:"未来会更好", lines:["实质：制造空头承诺，让人继续忍受现实。","真相：未来只是筹码，用来拖延你的反抗。","跨越：不依赖口头承诺，把握当下的主动权。"] },
+  { title:"这是规矩，别问为什么", lines:["实质：以规矩压制质疑，让规则永远向权力倾斜。","真相：规则从来不是公平的，而是利益者写下的护城河。","跨越：理解规则背后的利益，学会运用规则，而不是盲从。"] },
+  { title:"要知足，别贪心", lines:["实质：麻痹底层，让他们接受不公，不去争取。","真相：让你知足的人，永远不会知足。","跨越：知足是心态，追求更好是权利，两者不能混淆。"] },
+
+  // 人性的傲慢与极端 10页
+  { title:"权力的傲慢", lines:["拥有权力的人容易看不见他人的痛苦。"] },
+  { title:"财富的傲慢", lines:["有了钱的人，往往误以为一切都能用钱衡量，包括人心。"] },
+  { title:"知识的傲慢", lines:["读书多的人常陷入自以为聪明，轻视沉默却深刻的智慧。"] },
+  { title:"道德的傲慢", lines:["最危险的不是恶人，而是自认为“绝对正确”的好人。"] },
+  { title:"经验的傲慢", lines:["老手轻视新手，却忘了世界随时在变。"] },
+  { title:"地位的傲慢", lines:["人在上位，容易把“尊重”当成理所当然，而不是相互的。"] },
+  { title:"孤立的极端", lines:["有人选择彻底不信任任何人，以为冷漠能保护自己，结果只剩孤独。"] },
+  { title:"盲从的极端", lines:["有人为了归属感，放弃独立思考，变成群体的影子。"] },
+  { title:"贪欲的极端", lines:["欲望一旦失控，会吞噬理性，让人失去分寸。"] },
+  { title:"否定的极端", lines:["有些人不是追求真理，而是沉迷否定一切，最终失去方向。"] }
+];
+
+// ---------- 公共变量 ----------
+let currentPage=0;
+let container=document.getElementById("text");
+let title=document.getElementById("title");
+let reading=false;
+let synth=window.speechSynthesis;
+let utterance;
+let allLines;
+let topToBottom=true;
+let fontSize=2;
+
+// ---------- 渲染文本 ----------
+function renderText(){
+  container.innerHTML="";
+  title.textContent=pages[currentPage].title;
+  let lines = topToBottom ? pages[currentPage].lines : [...pages[currentPage].lines].reverse();
+  lines.forEach(line=>{
+    let div=document.createElement("div");
+    div.className="line";
+    div.style.fontSize=fontSize+"em";
+    // 人性的傲慢与极端文字红色
+    if(currentPage>=30) div.style.color="red";
+    container.appendChild(div);
+    div.textContent=line;
+  });
+}
+renderText();
+
+function nextPage(){if(currentPage<pages.length-1){currentPage++;renderText();}}
+function prevPage(){if(currentPage>0){currentPage--;renderText();}}
+function switchOrder(){topToBottom=!topToBottom;renderText();}
+function changeFontSize(delta){fontSize+=delta;if(fontSize<0.5)fontSize=0.5;renderText();}
+
+// ---------- 朗读 ----------
+function playText(){
+  stopText();
+  reading=true;
+  let currentLine=0;
+  allLines=container.querySelectorAll(".line");
+  function speakNextLine(){
+    if(!reading) return;
+    if(currentLine>=allLines.length){
+      if(currentPage<pages.length-1){currentPage++;renderText();currentLine=0;allLines=container.querySelectorAll(".line");speakNextLine();}
+      else{document.getElementById("successBtn").style.display="block";return;}
+    }
+    let lineDiv=allLines[currentLine];
+    let lineText=lineDiv.textContent;
+    utterance=new SpeechSynthesisUtterance(lineText);
+    utterance.lang="zh-CN";
+    utterance.rate=0.9;
+    utterance.pitch=1;
+    let voices = synth.getVoices();
+    let female = voices.find(v=>v.lang==="zh-CN")||voices[0];
+    utterance.voice=female;
+    utterance.onend=function(){currentLine++;speakNextLine();}
+    synth.speak(utterance);
+  }
+  speakNextLine();
+}
+function stopText(){reading=false;synth.cancel();document.getElementById("successBtn").style.display="none";}
+
+// ---------- 解释经文 ----------
+function toggleExplanation(){
+  let box=document.getElementById("explanationBox");
+  box.style.display=(box.style.display==="none"?"block":"none");
+}
+</script>
+</body>
+</html>
