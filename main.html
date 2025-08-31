@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Main Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #222; color: #fff; text-align: center; padding: 20px; }
+    #app { display: none; } /* 隐藏内容直到验证成功 */
+    #loading { font-size: 1.2em; color: yellow; }
+  </style>
+</head>
+<body>
+  <!-- 加载提示 -->
+  <div id="loading">正在验证登录，请稍候...</div>
+
+  <!-- 主体内容 -->
+  <div id="app">
+    <h1 id="title">欢迎来到主页面</h1>
+    <div id="lines"></div>
+    <div id="pageNumber"></div>
+    <div id="welcome" style="margin-top:20px; font-size:1.2em; color:yellow;"></div>
+
+    <!-- 登出按钮 -->
+    <button id="logoutBtn">退出登录</button>
+  </div>
+
+  <script type="module">
+    // 导入 Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+    // 你的 Firebase 配置（改成你项目的）
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    // 初始化 Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // 登录状态检查
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        // 显示内容，隐藏加载
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("app").style.display = "block";
+        document.getElementById("welcome").textContent = "欢迎, " + user.email;
+      } else {
+        // 未登录 → 跳转回登录页
+        window.location.href = "index.html";
+      }
+    });
+
+    // 退出登录按钮
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      signOut(auth).then(() => {
+        window.location.href = "index.html";
+      });
+    });
+  </script>
+</body>
+</html>

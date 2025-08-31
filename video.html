@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Sharing App</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; }
+    .container { width: 90%; max-width: 800px; margin: 20px auto; }
+    .card { background: #fff; padding: 15px; margin: 15px 0; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+    video { width: 100%; border-radius: 10px; margin-bottom: 10px; }
+    h3 { margin: 10px 0; }
+    .meta { font-size: 14px; color: #666; display: flex; gap: 10px; }
+    .comments { margin-top: 10px; padding-left: 10px; border-left: 3px solid #ddd; }
+    .comments p { background: #f1f1f1; padding: 5px; border-radius: 5px; margin: 5px 0; }
+    input[type=text] { padding: 6px; width: 70%; }
+    button { padding: 6px 12px; margin: 5px 0; cursor: pointer; }
+    form { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📺 My Video Sharing</h1>
+
+    <!-- Add Video Form -->
+    <form id="videoForm">
+      <input id="vTitle" type="text" placeholder="Video Title" required>
+      <input id="vTags" type="text" placeholder="Tags (comma separated)">
+      <input id="vLink" type="text" placeholder="Video URL (mp4)" required>
+      <input id="vThumb" type="text" placeholder="Thumbnail URL">
+      <button type="submit">➕ Add Video</button>
+    </form>
+
+    <!-- Video List -->
+    <div id="videoList"></div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js"></script>
+
+  <script>
+    // 🔹 Replace with your Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    // Init Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // 🔹 Add Video
+    document.getElementById("videoForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const video = {
+        title: document.getElementById("vTitle").value,
+        tags: document.getElementById("vTags").value.split(","),
+        src: document.getElementById("vLink").value,
+        thumb: document.getElementById("vThumb").value || "",
+        stats: { views: 0, likes: 0 },
+        createdAt: Date.now()
+      };
+
+      db.ref("videos").push(video);
+      e.target.reset();
+      alert("✅ Video added!");
+    });
+
+    // 🔹 Load Videos
+    function loadVideos() {
+      const videoList = document.getElementById("videoList");
+      db.ref("videos").on("value", (snapshot) => {
+        videoList.innerHTML = "";
+        snapshot.forEach((child) => {
+          const v = child.val();
+          const vId = child.key;
+
+          const article = document.createElement("article");
+          article.className = "card video-card";
+          article.innerHTML = `
+            <video controls poster="${v.thumb}">
+              <source src="${v.src}" type="video/mp4">
+              Your browser cannot play this video.
+            </video>
+            <h3>${v.title}</h3>
+            <p>Tags: ${v.tags.join(", ")}</p>
+            <div class="meta">
+              <span>👁 ${v.stats.views}</span>
+              <span>👍 ${v.stats.likes}</span>
+              <span>💬 <span id="comments-count-${vId}">0</span></span>
+            </div>
+            <div id="comments-${vId}" class="comments"></div>
+            <input id="comment-input-${vId}" placeholder="Write a comment...">
+            <button onclick="saveComment('${vId}')">Post</button>
+          `;
+          videoList.appendChild(article);
+
+          loadComments(vId);
+        });
+      });
+    }
+
+    // 🔹 Save Comment
+    function saveComment(videoId) {
+      const input = document.getElementById("comment-input-" + videoId);
+      const text = input.value;
+      if (!text) return;
+
+      db.ref("comments/" + videoId).push({
+        text: text,
+        createdAt: Date.now()
+      });
+
+      input.value = "";
+    }
+
+    // 🔹 Load Comments
+    function loadComments(videoId) {
+      const commentsDiv = document.getElementById("comments-" + videoId);
+      const countSpan = document.getElementById("comments-count-" + videoId);
+
+      db.ref("comments/" + videoId).on("value", (snapshot) => {
+        commentsDiv.innerHTML = "";
+        let count = 0;
+        snapshot.forEach((child) => {
+          const c = child.val();
+          const p = document.createElement("p");
+          p.textContent = c.text;
+          commentsDiv.appendChild(p);
+          count++;
+        });
+        countSpan.textContent = count;
+      });
+    }
+
+    window.onload = loadVideos;
+  </script>
+</body>
+</html>

@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>☢🔞☣ Savingprivateinryan 🪂⚓🛰</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <style>
+    body {
+      background: black;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 3em;
+      font-weight: bold;
+      animation: colorChange 5s infinite alternate;
+    }
+
+    /* Animation keyframes */
+    @keyframes colorChange {
+      0%   { color: red; }
+      25%  { color: orange; }
+      50%  { color: yellow; }
+      75%  { color: lime; }
+      100% { color: cyan; }
+    }
+  </style>
+  <style>
+    :root {
+  --bg: #0b0b0b; --muted:#888; --text:#f5f5f5; --accent:#4ade80;
+  --card:#141414; --border:#222; --danger:#ef4444; --star:#facc15;
+}
+* { box-sizing: border-box; }
+html,body { margin:0; background:var(--bg); color:var(--text); font-family:system-ui, Arial, sans-serif; }
+a { color: var(--accent); text-decoration: none; }
+.container { max-width: 1100px; margin: 0 auto; padding: 16px; }
+
+header h1 { margin: 8px 0 4px; font-size: 22px; }
+.nav { display:flex; gap:8px; flex-wrap: wrap; margin: 8px 0 12px; }
+.tab { background:#1a1a1a; border:1px solid var(--border); color:var(--text); padding:8px 12px; border-radius:10px; cursor:pointer; }
+.tab.active { outline:2px solid var(--accent); }
+.searchbar { margin: 8px 0 16px; }
+.searchbar input { width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#111; color:var(--text); }
+
+.tabpanel { display:none; }
+.tabpanel.active { display:block; }
+
+.card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; margin: 12px 0; box-shadow: 0 6px 16px rgba(0,0,0,.25); }
+.grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+input, textarea { width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#0f0f0f; color:var(--text); }
+textarea { resize: vertical; }
+.actions { display:flex; gap:8px; margin-top:10px; }
+button { padding:10px 14px; border-radius:10px; border:1px solid var(--border); background:#1a1a1a; color:var(--text); cursor:pointer; }
+button:hover { filter:brightness(1.15); }
+button.danger { background:#2a0f0f; border-color:#3a1515; color:#ffb3b3; }
+.hint { color:var(--muted); font-size:12px; margin-top:6px; }
+
+.cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:12px; }
+.video-card, .image-card, .novel-card, .track-card { position:relative; overflow:hidden; }
+.thumb { width:100%; height:160px; object-fit:cover; border-radius:12px; background:#080808; border:1px solid var(--border); }
+.meta { display:flex; align-items:center; justify-content:space-between; gap:6px; margin-top:8px; color:var(--muted); font-size:12px; }
+.actions-row { display:flex; gap:8px; margin-top:8px; align-items:center; }
+.badge { padding:2px 8px; border:1px solid var(--border); border-radius:999px; font-size:11px; color:var(--muted); }
+.star { color: var(--star); }
+.kebab { position:absolute; top:6px; right:6px; background:#0008; padding:4px 8px; border-radius:8px;}
+
+video { width:100%; border-radius:12px; border:1px solid var(--border); background:#000; }
+
+.list-controls { display:flex; gap:8px; align-items:center; justify-content:space-between; margin:8px 0; }
+
+/* Image viewer */
+#imageViewer { background:#0000; border:none; }
+#imageViewer::backdrop { background:rgba(0,0,0,.6); }
+#imageViewer img { max-width:90vw; max-height:80vh; border-radius:12px; }
+
+/* Prose for novel reader */
+.prose { line-height:1.6 }
+.prose h1,.prose h2,.prose h3 { margin: .6em 0 .3em; }
+
+/* Ads */
+#ad-top,#ad-bottom {
+  display:block; text-align:center; background:#111; border:1px dashed var(--border);
+  margin: 0 auto; color:#ccc; padding: 10px; max-width:960px; border-radius:12px;
+}
+#ad-top { margin-top:8px; }
+#ad-bottom { margin: 16px auto; }
+
+#ad-left,#ad-right {
+  position:fixed; top:25%; width:90px; height:250px; background:#111; border:1px dashed var(--border);
+  display:flex; align-items:center; justify-content:center; color:#aaa; border-radius:12px; z-index:30;
+}
+#ad-left { left:10px; }
+#ad-right { right:10px; }
+
+/* Center ad */
+#ad-center { position:fixed; inset:0; display:grid; place-items:center; background:rgba(0,0,0,.65); z-index:40; }
+.ad-center-card { background:#121212; border:1px solid var(--border); padding:18px; border-radius:16px; min-width:280px; }
+.ad-center-card .close { float:right; background:#2b2b2b; }
+
+/* Links list */
+.links { display:grid; gap:8px; }
+.links a { padding:10px 12px; border:1px solid var(--border); border-radius:12px; background:#141414; }
+
+@media (max-width: 900px) {
+  #ad-left,#ad-right { display:none; }
+}
+  </style>
+  <!-- Top banner ad -->
+  <a id="ad-top" href="#" target="_blank" aria-label="Top Banner Ad">Top Banner (960×60)</a>
+
+  <!-- Float ads -->
+<a id="ad-left" href="#" target="_blank" aria-label="Left Floating Ad">
+  Ad L <button class="close-left">✕</button>
+</a>
+<a id="ad-right" href="#" target="_blank" aria-label="Right Floating Ad">
+  Ad R <button class="close-right">✕</button>
+</a>
+
+<!-- Center ad -->
+<div id="ad-center" hidden>
+  <div class="ad-center-card">
+    <button class="close" id="closeCenterAd">✕</button>
+    <a href="#" target="_blank">Center Ad — Click to visit</a>
+  </div>
+</div>
+  <script>
+    // Close button
+    document.getElementById("closeCenterAd").onclick = () => {
+      document.getElementById("ad-center").style.display = "none";
+    };
+  </script>
+
+  <header class="container">
+    <h1>完美世界元素</h1>
+    <nav class="nav">
+      <button data-tab="videos" class="tab active">Videos</button>
+      <button data-tab="images" class="tab">Images</button>
+      <button data-tab="novels" class="tab">Novels</button>
+      <button data-tab="dj" class="tab">DJ</button>
+      <button data-tab="links" class="tab">Channels</button>
+      <button data-tab="contact" class="tab">Contact</button>
+    </nav>
+    <div class="searchbar">
+      <input id="searchInput" type="search" placeholder="Search videos by title/tag…" aria-label="Search videos" />
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- VIDEOS -->
+    <section id="tab-videos" class="tabpanel active" aria-labelledby="Videos">
+      <form id="videoForm" class="card" autocomplete="off">
+        <h2>Upload / Add Video</h2>
+        <div class="grid">
+          <label>Title
+            <input name="title" id="vTitle" required placeholder="My Video" />
+          </label>
+          <label>Tags (comma)
+            <input name="tags" id="vTags" placeholder="action,funny,news" />
+          </label>
+          <label>File (mp4/mov/webm)
+            <input id="vFile" type="file" accept="video/*" />
+          </label>
+          <label>Or Link (YouTube / MP4 URL)
+            <input id="vLink" type="url" placeholder="https://youtu.be/… or https://example.com/video.mp4" />
+          </label>
+          <label>Optional Thumbnail URL
+            <input id="vThumb" type="url" placeholder="https://…/thumb.jpg (auto for YouTube)" />
+          </label>
+        </div>
+        <div class="actions">
+          <button type="submit">Add Video</button>
+          <button type="button" id="toggleCenterAd">Show Center Ad</button>
+        </div>
+        <p class="hint">Tip: If you paste a YouTube link, the thumbnail auto-loads. For direct MP4 links, consider adding a thumbnail URL (cross-origin videos cannot be thumb-captured by the browser).</p>
+      </form>
+
+      <div class="list-controls">
+        <span id="videoCount">0 videos</span>
+        <button id="clearAllVideos" class="danger">Clear All</button>
+      </div>
+
+      <div id="videoList" class="cards"></div>
+    </section>
+
+    <!-- IMAGES -->
+    <section id="tab-images" class="tabpanel" aria-labelledby="Images">
+      <form id="imageForm" class="card">
+        <h2>Add Image</h2>
+        <div class="grid">
+          <label>Title
+            <input id="imgTitle" required />
+          </label>
+          <label>File
+            <input id="imgFile" type="file" accept="image/*" />
+          </label>
+          <label>Or Link
+            <input id="imgLink" type="url" placeholder="https://example.com/pic.jpg" />
+          </label>
+        </div>
+        <div class="actions"><button type="submit">Add Image</button></div>
+      </form>
+      <div id="imageList" class="cards"></div>
+
+      <!-- Image viewer modal -->
+      <dialog id="imageViewer">
+        <img id="viewerImg" alt="" />
+        <form method="dialog"><button>Close</button></form>
+      </dialog>
+    </section>
+
+    <!-- NOVELS -->
+    <section id="tab-novels" class="tabpanel" aria-labelledby="Novels">
+      <form id="novelForm" class="card">
+        <h2>Add Novel</h2>
+        <div class="grid">
+          <label>Title
+            <input id="novelTitle" required />
+          </label>
+          <label>Content (Markdown supported)
+            <textarea id="novelContent" rows="6" placeholder="# Chapter 1…"></textarea>
+          </label>
+        </div>
+        <div class="actions"><button type="submit">Add Novel</button></div>
+      </form>
+      <div id="novelList" class="cards"></div>
+      <article id="novelReader" class="card" hidden>
+        <h3 id="readerTitle"></h3>
+        <div id="readerBody" class="prose"></div>
+      </article>
+    </section>
+
+    <!-- DJ / MUSIC -->
+    <section id="tab-dj" class="tabpanel" aria-labelledby="DJ">
+      <form id="trackForm" class="card">
+        <h2>Add Track</h2>
+        <div class="grid">
+          <label>Title
+            <input id="trackTitle" required />
+          </label>
+          <label>File
+            <input id="trackFile" type="file" accept="audio/*" />
+          </label>
+          <label>Or Link (mp3/stream)
+            <input id="trackLink" type="url" placeholder="https://media0.giphy.com />
+          </label>
+        </div>
+        <div class="actions"><button type="submit">Add Track</button></div>
+      </form>
+      <div id="trackList" class="cards"></div>
+      <div class="player card">
+        <audio id="audioPlayer" controls preload="metadata"></audio>
+        <div id="nowPlaying">Now Playing: —</div>
+      </div>
+    </section>
+
+    <!-- CHANNEL LINKS -->
+    <section id="tab-links" class="tabpanel" aria-labelledby="Channels">
+      <form id="linkForm" class="card">
+        <h2>Add External Channel</h2>
+        <div class="grid">
+          <label>Label
+            <input id="chanLabel" required placeholder="My Telegram / YouTube / Site" />
+          </label>
+          <label>URL
+            <input id="chanUrl" type="url" required placeholder="https://…" />
+          </label>
+        </div>
+        <div class="actions"><button type="submit">Add Link</button></div>
+      </form>
+      <div id="linkList" class="links"></div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="tab-contact" class="tabpanel" aria-labelledby="Contact">
+      <div class="card">
+        <h2>Contact</h2>
+        <p>Email: <a href="gmail.com">hmoobtsaaab110@gmail.com</a></p>
+        <p>Telegram: <a href="#" target="_blank">@your_channel</a></p>
+        <p>Advertising: left/right float, top/bottom banner, center popup supported. Replace ad href & text in <code>index.html</code> or via <code>app.js</code> config.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom banner ad -->
+  <a id="ad-bottom" href="#" target="_blank" aria-label="Bottom Banner Ad">Bottom Banner (960×60)</a>
+  <script>
+    /* ===== Simple Local DB ===== */
+const DB_KEYS = {
+  videos: 'spr_videos',
+  images: 'spr_images',
+  novels: 'spr_novels',
+  tracks: 'spr_tracks',
+  links:  'spr_links'
+};
+const load = (k, d=[]) => JSON.parse(localStorage.getItem(k) || JSON.stringify(d));
+const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+const uid = () => Math.random().toString(36).slice(2,10);
+
+/* ===== Tabs ===== */
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab,.tabpanel').forEach(el=>el.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+  });
+});
+
+/* ===== Ads ===== */
+const adCenter = document.getElementById('ad-center');
+document.getElementById('toggleCenterAd').addEventListener('click', ()=> adCenter.hidden = false);
+document.getElementById('closeCenterAd').addEventListener('click', ()=> adCenter.hidden = true);
+
+/* ===== Helpers ===== */
+function parseYouTubeId(url) {
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes('youtu.be')) return u.pathname.slice(1);
+    if (u.hostname.includes('youtube.com')) return u.searchParams.get('v');
+  } catch {}
+  return null;
+}
+function ytThumb(url) {
+  const id = parseYouTubeId(url);
+  return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null;
+}
+function fileToBlobURL(file) { return URL.createObjectURL(file); }
+function timeNow() { return new Date().toISOString(); }
+
+/* ===== VIDEOS ===== */
+const videoForm = document.getElementById('videoForm');
+const vFile = document.getElementById('vFile');
+const vLink = document.getElementById('vLink');
+const vTitle = document.getElementById('vTitle');
+const vTags = document.getElementById('vTags');
+const vThumb = document.getElementById('vThumb');
+const videoList = document.getElementById('videoList');
+const videoCount = document.getElementById('videoCount');
+const clearAllVideosBtn = document.getElementById('clearAllVideos');
+const searchInput = document.getElementById('searchInput');
+
+function getVideos(){ return load(DB_KEYS.videos); }
+function setVideos(v){ save(DB_KEYS.videos, v); renderVideos(); }
+
+videoForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const title = vTitle.value.trim();
+  const tags = vTags.value.split(',').map(s=>s.trim()).filter(Boolean);
+  const link = vLink.value.trim();
+  const thumbFromYT = link ? ytThumb(link) : null;
+
+  let src = '';
+  let srcType = '';
+  let thumb = vThumb.value.trim() || thumbFromYT || '';
+
+  if (vFile.files[0]) {
+    src = fileToBlobURL(vFile.files[0]);
+    srcType = 'file';
+    // Try capture frame for thumbnail (only for same-origin blobs)
+    try {
+      thumb = await captureVideoThumbnail(src);
+    } catch { /* ignore */ }
+  } else if (link) {
+    src = link;
+    srcType = 'link';
+  } else {
+    alert('Choose a video file or paste a link.');
+    return;
+  }
+
+  const item = {
+    id: uid(), title, tags, src, srcType, thumb,
+    createdAt: timeNow(),
+    stats: { views: 0, likes: 0, favorites: false },
+    comments: []
+  };
+  const all = getVideos();
+  all.unshift(item);
+  setVideos(all);
+  videoForm.reset();
+});
+
+clearAllVideosBtn.addEventListener('click', ()=>{
+  if (confirm('Clear all saved videos?')) setVideos([]);
+});
+
+searchInput.addEventListener('input', ()=> renderVideos());
+
+async function captureVideoThumbnail(src) {
+  return new Promise((resolve, reject)=>{
+    const v = document.createElement('video');
+    v.src = src; v.muted = true; v.currentTime = 0.01; v.crossOrigin = 'anonymous';
+    v.addEventListener('loadeddata', ()=>{
+      const c = document.createElement('canvas');
+      c.width = 480; c.height = Math.round(480 * (v.videoHeight/v.videoWidth || 9/16));
+      const ctx = c.getContext('2d');
+      ctx.drawImage(v, 0, 0, c.width, c.height);
+      try { resolve(c.toDataURL('image/jpeg', 0.8)); } catch(e){ reject(e); }
+    }, {once:true});
+    v.addEventListener('error', reject, {once:true});
+  });
+}
+
+function renderVideos() {
+  const q = searchInput.value.toLowerCase();
+  const items = getVideos().filter(v=>{
+    if (!q) return true;
+    return v.title.toLowerCase().includes(q) || (v.tags||[]).join(',').toLowerCase().includes(q);
+  });
+
+  videoCount.textContent = `${items.length} videos`;
+  videoList.innerHTML = items.map(v=> cardHTML(v)).join('');
+  // wire events
+  items.forEach(v=>{
+    const card = document.getElementById(`v-${v.id}`);
+    const vid = card.querySelector('video');
+    const playOnce = ()=> {
+      v.stats.views += 1;
+      updateVideo(v);
+      vid.removeEventListener('play', playOnce);
+    };
+    vid.addEventListener('play', playOnce);
+    card.querySelector('.like').addEventListener('click', ()=> { v.stats.likes += 1; updateVideo(v); });
+    card.querySelector('.fav').addEventListener('click', ()=> { v.stats.favorites = !v.stats.favorites; updateVideo(v); });
+    card.querySelector('.del').addEventListener('click', ()=> { removeVideo(v.id); });
+    card.querySelector('.add-comment').addEventListener('click', ()=>{
+      const text = prompt('Add comment:');
+      if (text) { v.comments.push({id:uid(), text, at: timeNow()}); updateVideo(v); }
+    });
+  });
+}
+function cardHTML(v){
+  const tags = (v.tags||[]).map(t=>`<span class="badge">#${escapeHtml(t)}</span>`).join(' ');
+  const star = v.stats.favorites ? '⭐' : '☆';
+  return `
+  <article class="card video-card" id="v-${v.id}">
+  <div class="kebab"><button class="del" title="Delete">🗑</button></div>
+
+  ${v.thumb ? `<img class="thumb" src="${v.thumb}" alt="Thumbnail of ${escapeHtml(v.title)}" />` : ''}
+
+  <video controls preload="metadata" poster="${v.thumb||''}">
+    <source src="${v.src}">
+    Your browser cannot play this video.
+  </video>
+
+  <h3>${escapeHtml(v.title)}</h3>
+
+  <div class="meta">
+    <span>👁 ${v.stats.views}</span>
+    <span>👍 ${v.stats.likes}</span>
+    <span>💬 ${v.comments.length}</span>
+  </div>
+
+  <div class="actions-row">
+    <button class="like">👍 Like</button>
+    <button class="add-comment">💬 Comment</button>
+    <button class="fav">${star} Favorite</button>
+    ${tags}
+  </div>
+
+  <!-- NEW: Comments section -->
+  <div class="comments">
+    <div id="comments-${v.id}" class="comments-list">
+      <!-- Existing comments will be displayed here -->
+      ${v.comments.map(c => `<p>${escapeHtml(c)}</p>`).join('')}
+    </div>
+    <input type="text" id="commentInput-${v.id}" placeholder="Write a comment..." />
+    <button class="post-comment" data-index="${v.id}">Post</button>
+  </div>
+  </article>`;
+}
+function escapeHtml(s){ return s.replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[m]); }
+function removeVideo(id){
+  const all = getVideos().filter(x=>x.id!==id);
+  setVideos(all);
+}
+function updateVideo(v){
+  const all = getVideos().map(x=> x.id===v.id ? v : x);
+  setVideos(all);
+}
+
+/* ===== IMAGES ===== */
+const imageForm = document.getElementById('imageForm');
+const imgFile = document.getElementById('imgFile');
+const imgLink = document.getElementById('imgLink');
+const imgTitle = document.getElementById('imgTitle');
+const imageList = document.getElementById('imageList');
+const imageViewer = document.getElementById('imageViewer');
+const viewerImg = document.getElementById('viewerImg');
+
+function getImages(){ return load(DB_KEYS.images); }
+function setImages(v){ save(DB_KEYS.images, v); renderImages(); }
+
+imageForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const title = imgTitle.value.trim();
+  let src = '';
+  if (imgFile.files[0]) src = fileToBlobURL(imgFile.files[0]);
+  else if (imgLink.value.trim()) src = imgLink.value.trim();
+  else return alert('Choose an image file or link');
+
+  const item = { id: uid(), title, src, createdAt: timeNow() };
+  const all = getImages(); all.unshift(item); setImages(all);
+  imageForm.reset();
+});
+
+function renderImages(){
+  const items = getImages();
+  imageList.innerHTML = items.map(i=>`
+    <article class="card image-card" id="i-${i.id}">
+      <div class="kebab"><button data-id="${i.id}" class="idel">🗑</button></div>
+      <img class="thumb" src="${i.src}" alt="${escapeHtml(i.title)}" />
+      <h3>${escapeHtml(i.title)}</h3>
+      <div class="actions-row"><button data-src="${i.src}" class="view">View</button></div>
+    </article>`).join('');
+  imageList.querySelectorAll('.view').forEach(b=> b.addEventListener('click', ()=>{
+    viewerImg.src = b.dataset.src;
+    imageViewer.showModal();
+  }));
+  imageList.querySelectorAll('.idel').forEach(b=> b.addEventListener('click', ()=>{
+    setImages(getImages().filter(x=> x.id !== b.dataset.id));
+  }));
+}
+
+/* ===== NOVELS ===== */
+const novelForm = document.getElementById('novelForm');
+const novelTitle = document.getElementById('novelTitle');
+const novelContent = document.getElementById('novelContent');
+const novelList = document.getElementById('novelList');
+const novelReader = document.getElementById('novelReader');
+const readerTitle = document.getElementById('readerTitle');
+const readerBody = document.getElementById('readerBody');
+
+function getNovels(){ return load(DB_KEYS.novels); }
+function setNovels(v){ save(DB_KEYS.novels, v); renderNovels(); }
+
+novelForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const item = { id:uid(), title:novelTitle.value.trim(), content:novelContent.value, createdAt: timeNow() };
+  const all = getNovels(); all.unshift(item); setNovels(all); novelForm.reset();
+});
+function renderNovels(){
+  const items = getNovels();
+  novelList.innerHTML = items.map(n=>`
+    <article class="card novel-card" id="n-${n.id}">
+      <div class="kebab"><button data-id="${n.id}" class="ndel">🗑</button></div>
+      <h3>${escapeHtml(n.title)}</h3>
+      <div class="actions-row">
+        <button data-id="${n.id}" class="read">Read</button>
+      </div>
+    </article>
+  `).join('');
+  novelList.querySelectorAll('.read').forEach(b=> b.addEventListener('click', ()=>{
+    const n = getNovels().find(x=>x.id === b.dataset.id);
+    readerTitle.textContent = n.title;
+    readerBody.innerHTML = renderMarkdown(n.content);
+    novelReader.hidden = false;
+    window.scrollTo({top: novelReader.offsetTop - 20, behavior:'smooth'});
+  }));
+  novelList.querySelectorAll('.ndel').forEach(b=> b.addEventListener('click', ()=>{
+    setNovels(getNovels().filter(x=> x.id !== b.dataset.id));
+    if (!novelReader.hidden && readerTitle.textContent === b.dataset.id) novelReader.hidden = true;
+  }));
+}
+function renderMarkdown(md){
+  // very tiny markdown (headers + paragraphs + code)
+  const lines = md.split('\n').map(l=>{
+    if (l.startsWith('### ')) return `<h3>${escapeHtml(l.slice(4))}</h3>`;
+    if (l.startsWith('## ')) return `<h2>${escapeHtml(l.slice(3))}</h2>`;
+    if (l.startsWith('# ')) return `<h1>${escapeHtml(l.slice(2))}</h1>`;
+    return `<p>${escapeHtml(l)}</p>`;
+  }).join('');
+  return lines;
+}
+
+/* ===== DJ / MUSIC ===== */
+const trackForm = document.getElementById('trackForm');
+const trackTitle = document.getElementById('trackTitle');
+const trackFile = document.getElementById('trackFile');
+const trackLink = document.getElementById('trackLink');
+const trackList = document.getElementById('trackList');
+const audioPlayer = document.getElementById('audioPlayer');
+const nowPlaying = document.getElementById('nowPlaying');
+
+function getTracks(){ return load(DB_KEYS.tracks); }
+function setTracks(v){ save(DB_KEYS.tracks, v); renderTracks(); }
+
+trackForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  let src = '';
+  if (trackFile.files[0]) src = fileToBlobURL(trackFile.files[0]);
+  else if (trackLink.value.trim()) src = trackLink.value.trim();
+  else return alert('Choose a file or paste a link.');
+  const item = { id:uid(), title:trackTitle.value.trim(), src, createdAt: timeNow() };
+  const all = getTracks(); all.unshift(item); setTracks(all); trackForm.reset();
+});
+function renderTracks(){
+  const items = getTracks();
+  trackList.innerHTML = items.map(t=>`
+    <article class="card track-card" id="t-${t.id}">
+      <div class="kebab"><button data-id="${t.id}" class="tdel">🗑</button></div>
+      <h3>${escapeHtml(t.title)}</h3>
+      <div class="actions-row">
+        <button data-id="${t.id}" class="play">Play</button>
+      </div>
+    </article>
+  `).join('');
+  trackList.querySelectorAll('.play').forEach(b=> b.addEventListener('click', ()=>{
+    const t = getTracks().find(x=> x.id === b.dataset.id);
+    audioPlayer.src = t.src; audioPlayer.play();
+    nowPlaying.textContent = `Now Playing: ${t.title}`;
+  }));
+  trackList.querySelectorAll('.tdel').forEach(b=> b.addEventListener('click', ()=>{
+    setTracks(getTracks().filter(x=> x.id !== b.dataset.id));
+  }));
+}
+
+/* ===== CHANNEL LINKS ===== */
+const linkForm = document.getElementById('linkForm');
+const chanLabel = document.getElementById('chanLabel');
+const chanUrl = document.getElementById('chanUrl');
+const linkList = document.getElementById('linkList');
+
+function getLinks(){ return load(DB_KEYS.links); }
+function setLinks(v){ save(DB_KEYS.links, v); renderLinks(); }
+
+linkForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const item = { id:uid(), label: chanLabel.value.trim(), url: chanUrl.value.trim() };
+  const all = getLinks(); all.unshift(item); setLinks(all); linkForm.reset();
+});
+function renderLinks(){
+  const items = getLinks();
+  linkList.innerHTML = items.map(l=> `<a href="${l.url}" target="_blank" rel="noopener">${escapeHtml(l.label)} →</a>`).join('');
+}
+
+/* ===== INIT ===== */
+function init(){
+  renderVideos();
+  renderImages();
+  renderNovels();
+  renderTracks();
+  renderLinks();
+}
+init();
+  </script>
+  
+  <script>
+    function closeAd(id) {
+      document.getElementById(id).style.display = "none";
+    }
+  </script>
+  
+  <style>
+  /* Float ads */
+  #ad-left, #ad-right {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffcc00;
+    color: #000;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    z-index: 999;
+    text-decoration: none;
+  }
+  #ad-left { left: 10px; }
+  #ad-right { right: 10px; }
+
+  .close-left, .close-right {
+    margin-left: 5px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  /* Center ad */
+  #ad-center {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .ad-center-card {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    color: yellow;
+    position: relative;
+    text-align: center;
+  }
+
+  .ad-center-card .close {
+    position: absolute;
+    top: 5px; right: 5px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  // Left ad close
+  document.querySelector('.close-left').addEventListener('click', e => {
+    e.preventDefault(); 
+    document.getElementById('ad-left').style.display = 'none';
+  });
+
+  // Right ad close
+  document.querySelector('.close-right').addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('ad-right').style.display = 'none';
+  });
+
+  // Center ad close
+  document.getElementById('closeCenterAd').addEventListener('click', () => {
+    document.getElementById('ad-center').hidden = true;
+  });
+
+  // Show center ad on page load
+  window.addEventListener('load', () => {
+    document.getElementById('ad-center').hidden = false;
+  });
+</script>
+  
+  <script src="app.js"></script>
+</body>
+</html>
